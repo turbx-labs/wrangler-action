@@ -299,6 +299,7 @@ async function wranglerCommands() {
 
 			if (
 				config["VARS"].length &&
+				// support versions upload feature
 				(command.startsWith("deploy") || command.startsWith("publish") || command.startsWith("versions upload")) &&
 				!command.includes("--var")
 			) {
