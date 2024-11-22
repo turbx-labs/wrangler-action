@@ -1,6 +1,7 @@
 name: Release
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -9,7 +10,6 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
-    if: ${{ github.repository_owner == 'cloudflare' }}
     name: Release
     runs-on: ubuntu-latest
     permissions:
@@ -27,8 +27,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          # Pinned due to compatibility issues on 23.2.0
-          node-version: "22"
+          node-version: "latest"
           cache: "npm"
 
       - name: Install modules
